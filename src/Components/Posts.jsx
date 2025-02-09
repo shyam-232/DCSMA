@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Card, CardContent, Typography, Button, Grid2 } from '@mui/material';
 
 const Posts = ({ contract }) => {
   const [posts, setPosts] = useState([]);
@@ -20,32 +19,29 @@ const Posts = ({ contract }) => {
   };
 
   useEffect(() => {
-    fetchPosts(); // Fetch posts when the component is mounted
+    fetchPosts();
   }, [contract]);
 
   return (
-    <div>
-      <Typography variant="h5" sx={{ marginBottom: 2 }}>
-        Posts
-      </Typography>
-      <Button variant="contained" onClick={fetchPosts} sx={{ marginBottom: 2 }}>
+    <div className="p-4">
+      <h2 className="text-2xl font-bold mb-4">Posts</h2>
+      <button
+        className="bg-blue-500 hover:cursor-pointer hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4"
+        onClick={fetchPosts}
+      >
         Refresh Posts
-      </Button>
+      </button>
       {loading ? (
-        <Typography>Loading... </Typography>
+        <p>Loading...</p>
       ) : (
-        <Grid2 container spacing={2}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {posts.map((post, index) => (
-            <Grid2 item xs={12} sm={6} md={4} key={index}>
-              <Card>
-                <CardContent>
-                  <Typography>Content: {post.content}</Typography>
-                  <Typography variant="caption">Author: {post.author}</Typography>
-                </CardContent>
-              </Card>
-            </Grid2>
+            <div key={index} className="bg-white shadow-md rounded-lg p-4">
+              <p className="text-gray-700">Content: {post.content}</p>
+              <p className="text-gray-500 text-sm">Author: {post.author}</p>
+            </div>
           ))}
-        </Grid2>
+        </div>
       )}
     </div>
   );

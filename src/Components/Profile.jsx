@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Card, CardContent, Typography, Button, TextField } from '@mui/material';
 
 const Profile = ({ account, contract }) => {
   const [username, setUsername] = useState('');
@@ -26,21 +25,22 @@ const Profile = ({ account, contract }) => {
   }, [contract]);
 
   return (
-    <Card sx={{ marginBottom: 4 }}>
-      <CardContent>
-        <Typography variant="h5">Profile</Typography>
-        {username ? (
-          <div>
-            <Typography>Username: {username}</Typography>
-            <Typography>Reputation: {reputation}</Typography>
-          </div>
-        ) : (
-          <Button variant="contained" onClick={createProfile}>
-            Create Profile
-          </Button>
-        )}
-      </CardContent>
-    </Card>
+    <div className="bg-white shadow-md rounded-lg p-4 mb-4">
+      <h2 className="text-2xl text-gray-700 font-bold mb-4">Profile</h2>
+      {username ? (
+        <div>
+          <p className="text-gray-700">Username: {username}</p>
+          <p className="text-gray-500">Reputation: {reputation}</p>
+        </div>
+      ) : (
+        <button
+          className="bg-blue-500 hover:cursor-pointer hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={createProfile}
+        >
+          Create Profile
+        </button>
+      )}
+    </div>
   );
 };
 
